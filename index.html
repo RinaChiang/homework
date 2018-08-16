@@ -3,7 +3,9 @@
 
 <head>
 <title>homework 1</title>
+<meta charset="UTF-8"/>
 <script src="index.js"></script>
+<link rel="stylesheet" type="text/css" href="index.css">
 
 </head>
 
@@ -11,16 +13,25 @@
     
     
     
-    <button type="button" onclick="addrow()">
+    <button type="button" class="TableButton" onclick="addrow()">
         Add Table
-    </button></br></br>
+    </button><br/><br/>
 
    
 
     
-        <table border="1"> 
-          
-            <tbody id="tbody">
+        <table  class="tablecss" border="1">
+            <thead  class="title">
+                <tr>
+                   <th class="ID">ID</th>
+                   <th class="Name">Name</th>
+                   <th class="Delete">Delete</th>
+                   <th class="Edit">Edit</th>
+
+                </tr>
+            </thead>
+
+            <tbody id="tbody"  class="body">
             
             </tbody>
              
