@@ -31,7 +31,10 @@
 
        deletebutton.style.color="white";
        deletebutton.style.background="#9d9d9d";
-
+       deletebutton.style.boxShadow="3px 3px 3px #4f4f4f ";
+       deletebutton.style.borderRadius="5px";
+       //font-family: 'Open Sans Condensed', sans-serif;
+       
        deletebutton.onclick=function(){
            removeRow(this);
        }
@@ -46,6 +49,9 @@
        // editbutton css
        editbutton.style.color="white";
        editbutton.style.background="#7b7b7b";
+       editbutton.style.boxShadow=" 3px 3px 3px #4f4f4f ";
+       editbutton.style.borderRadius="10px";
+
        editbutton.onclick=function (){
 
             td4.removeChild(editbutton);
@@ -58,11 +64,12 @@
             savebutton.setAttribute("save_id",trid);
 
             //savebutton css
-            savebutton.style.width="70px";
+            savebutton.style.width="50px";
             savebutton.style.height="20px";
             savebutton.style.color="white";
             savebutton.style.background="#eac100";
-            savebutton.style.borderRadius="50%";
+            savebutton.style.borderRadius="5px";
+            savebutton.style.boxShadow="3px 3px 3px #bebebe";
    
 
             
@@ -90,6 +97,7 @@
             cancelbutton.innerHTML="Cancel";
             td4.appendChild(cancelbutton);
             cancelbutton.setAttribute("cancel_id",trid);
+            cancelbutton.style.boxShadow="3px 3px 3px #bebebe";
 
             //cancelbutton css
             cancelbutton.style.color="white";

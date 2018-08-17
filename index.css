@@ -4,14 +4,46 @@
 }
 
 .TableButton{
-    color: white;
-    background:rgba(0,0,0,0.4);
+    /*color: white;
+    
     width:80px;
-    height: 30px;
+    height: 80px;
     font-size: 10px;
     border: none;
-    border-radius: 50%;
-   
+    border-radius: 50%;*/
+    
+    /*background-color:#3bb3e0;*/
+    background-color:#3c3c3c;
+	padding:10px;
+	position:relative;
+	font-family: 'Lobster', cursive;
+	font-size:12px;
+	text-decoration:none;
+    color:#fff;
+    /*預設由上而下漸層*/
+	background: linear-gradient(bottom, #3c3c3c 	#bebebe );
+	background: -o-linear-gradient( 	#3c3c3c 	#bebebe );
+	background: -moz-linear-gradient(#3c3c3c 	#bebebe );
+	background: -webkit-linear-gradient( #3c3c3c  	#bebebe );
+	background: -ms-linear-gradient( #3c3c3c  	#bebebe);
+	background: -webkit-gradient(
+	linear,
+	left bottom,
+	left top,
+	color-stop(0, #3c3c3c),
+	color-stop(1,	#bebebe)
+	);
+    
+    /*box-shadow:x y blur spread color inset*/
+    /*前面加入inset 可以變成內陰影 可呈現凹入的可呈現凹入的視覺*/
+	-webkit-box-shadow: inset 0px 1px 0px 2px #4f4f4f, 0px 6px 0px 	#5b5b5b;
+	-moz-box-shadow: inset 0px 1px 0px 2px #4f4f4f, 0px 6px 0px 	#5b5b5b;
+	-o-box-shadow: inset 0px 1px 0px 2px #4f4f4f, 0px 6px 0px 	#5b5b5b;
+	box-shadow: inset 0px 1px 0px 2px #4f4f4f, 0px 6px 0px 	#5b5b5b;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+	-o-border-radius: 5px;
+	border-radius: 5px;
    
     
 }
@@ -20,6 +52,7 @@
     background-color: rgb(190,190,190);
     color: white;
     font-size: 20px;
+    font-family: 'Lobster', cursive;
    
 }
 
