@@ -4,15 +4,7 @@
 }
 
 .TableButton{
-    /*color: white;
     
-    width:80px;
-    height: 80px;
-    font-size: 10px;
-    border: none;
-    border-radius: 50%;*/
-    
-    /*background-color:#3bb3e0;*/
     background-color:#3c3c3c;
 	padding:10px;
 	position:relative;
@@ -80,3 +72,36 @@
     margin:100px;
 }
 
+.deletebtn{
+	color: white;
+	background: rgb(157,157,157);
+	box-shadow: rgb(79,79,79) 3px 3px 3px;
+	border-radius: 5px;
+}
+
+.editbtn{
+	   color:white;
+       background:#7b7b7b;
+       box-Shadow:3px 3px 3px #4f4f4f;
+       border-Radius:10px;
+}
+
+
+.savebtn{
+	        width:50px;
+            height:20px;
+            color:white;
+            background:#eac100;
+            border-Radius:5px;
+            box-Shadow:3px 3px 3px #bebebe;
+   
+}
+
+.cancelbtn{
+           color:white;
+           background:#ff5809;
+           width:70px;
+           height:20px;
+           border-Radius:70%;
+           margin-Left:10px;
+}
