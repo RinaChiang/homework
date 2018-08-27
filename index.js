@@ -66,8 +66,7 @@
        deletebutton.innerHTML="Delete";
        deletebutton.className="deletebtn";
        td3.appendChild(deletebutton); 
-       deletebutton.setAttribute("data_id",trid);//將trid值設給data_id
-      
+       deletebutton.setAttribute("id","delete"+trid);
 
        //deletebutton click
        deletebutton.onclick=function(){
@@ -188,10 +187,6 @@
         var oldvalue1=text1.value;
         var oldvalue2=text2.value;
 
-    
-      
-       
-    
        
        }
     
@@ -208,19 +203,19 @@
 
    //delete the row
    function removeRow(event){
-       var id=event.getAttribute("data_id");
-       var tr=document.getElementById(id);
+
+       var tr=document.getElementById("tr_id");
        tr.outerHTML="";
    }
 
-function loadAll(){
+/*function loadAll(){
       var newstr=localStorage.getItem("row1span");
       var newspanId_result=document.getElementById("spanid"+trid);
       var newspanName_result=document.getElementById("spanName"+trid);
       var newsite=JSON.parse(newstr);
       newspanId_result.innerHTML=newsite.IdInput;
       newspanName_result.innerHTML=newsite.NameInput;
-}
+}*/
     
 
 
