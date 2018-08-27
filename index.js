@@ -1,20 +1,29 @@
+
+
   var counterindex=1;
-     
-     
+
    function addrow(){
        
        //Create tr
        var tr=document.createElement("tr"); /*create <tr> node*/
        var trid=counterindex;
-       tr.setAttribute("id",trid);//將trid屬性設置給id
-       //setAttribute():添加指定的屬性，並為其賦予指定的值
+       tr.setAttribute("tr_id",trid);//將trid屬性設置給id
+       tr.setAttribute("id","tr_id");
+
+       
+       /*var sitetr = new Object;
+       sitetr.rowtr=document.getElementById("tr_id").value;
+       var strtr = JSON.stringify(sitetr);//change to String
+       localStorage.setItem("row1",strtr);
+       console.log(strtr);*/
 
        // create ID td
        var td1=document.createElement("td"); /*create <td> node*/
-       td1.setAttribute("td1_id",trid);
+       td1.setAttribute("id","IDtd"+trid);
        
        //create IDInput
        var text1=document.createElement("input");
+       text1.setAttribute("id","inputid"+trid);
        text1.type="text";
        text1.value="Id";
        text1.style.borderStyle="outset";
@@ -23,18 +32,19 @@
 
        //create IDspan
        var spanText1=document.createElement("span");
+       spanText1.setAttribute("id","spanid"+trid);
        td1.appendChild(spanText1);
        spanText1.innerHTML="Id"+counterindex;
        spanText1.display="block";
 
        
-       
        // create Name td
        var td2=document.createElement("td");
-       td2.setAttribute("td2_id",trid);
+       td2.setAttribute("id","Nametd"+trid);
        
        //create Name Input
        var text2=document.createElement("input");
+       text2.setAttribute("id","inputName"+trid);
        text2.type="text";
        text2.value="name";
        text2.style.borderStyle="outset";
@@ -43,6 +53,7 @@
 
        //create Name span
        var spanText2=document.createElement("span");
+       spanText2.setAttribute("id","spanName"+trid);
        td2.appendChild(spanText2);
        spanText2.innerHTML="name"+counterindex;
        spanText2.display="block";
@@ -88,26 +99,39 @@
             //savebutton click
             savebutton.onclick=function(){
                 
-                
+                //Id/Name localstorage
+                var site = new Object;
+                site.IdInput=document.getElementById("inputid"+trid).value; 
+                site.NameInput=document.getElementById("inputName"+trid).value; 
+                var str = JSON.stringify(site);//change to String
+                localStorage.setItem("row1input",str);
+                console.log(str);
+
+               
                 td4.appendChild(editbutton);
                 td4.removeChild(savebutton);
                 td4.removeChild(cancelbutton);
                 
-                //td1 span display:block
-                //td1 input display:none
+               
                 text1.style.display="none";
                 spanText1.style.display="block";
-                spanText1.innerHTML=text1.value;
- 
+                var span1_result = document.getElementById("spanid"+trid);
+                span1_result.innerHTML=site.IdInput;
 
-                //td2 span display:block
-                //td2 input display:none
                 text2.style.display="none";
                 spanText2.style.display="block";
-                spanText2.innerHTML=text2.value;
+                var span2_result = document.getElementById("spanName"+trid);
+                span2_result.innerHTML= site.NameInput;
 
-            
-              
+
+                var site1 = new Object;
+                site1.Idspan=document.getElementById("spanid"+trid).innerHTML; 
+                site1.Namespan=document.getElementById("spanName"+trid).innerHTML; 
+                var str1 = JSON.stringify(site1);//change to String
+                localStorage.setItem("row1span",str1);
+                console.log(str1);
+                console.log(site1.Idspan);
+                
              }
 
              
@@ -163,18 +187,14 @@
         text2.style.display="block";
         var oldvalue1=text1.value;
         var oldvalue2=text2.value;
-        var IdInput=document.getElementById("td1_id").value;
-        text1.value=IdInput;
-        var NameInput=document.getElementById("td2_id").value;
-        text2.value=NameInput;
-        
-        
+
+    
       
        
-       }
+    
        
-
-
+       }
+    
        counterindex+=1;
        tr.appendChild(td1); /*Append td1 to tr*/
        tr.appendChild(td2);
@@ -193,9 +213,16 @@
        tr.outerHTML="";
    }
 
-
-
+function loadAll(){
+      var newstr=localStorage.getItem("row1span");
+      var newspanId_result=document.getElementById("spanid"+trid);
+      var newspanName_result=document.getElementById("spanName"+trid);
+      var newsite=JSON.parse(newstr);
+      newspanId_result.innerHTML=newsite.IdInput;
+      newspanName_result.innerHTML=newsite.NameInput;
+}
     
+
 
        
    
