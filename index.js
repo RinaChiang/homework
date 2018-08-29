@@ -1,4 +1,8 @@
 
+/*$('#dataTable').dataTable( {
+  "stateSave": true
+} );*/
+
 
   var counterindex=1;
 
@@ -11,11 +15,7 @@
        tr.setAttribute("id","tr_id");
 
        
-       /*var sitetr = new Object;
-       sitetr.rowtr=document.getElementById("tr_id").value;
-       var strtr = JSON.stringify(sitetr);//change to String
-       localStorage.setItem("row1",strtr);
-       console.log(strtr);*/
+      
 
        // create ID td
        var td1=document.createElement("td"); /*create <td> node*/
@@ -71,6 +71,13 @@
        //deletebutton click
        deletebutton.onclick=function(){
            removeRow(this);
+
+           //Delete localStorage
+           var siteDelete = new Object; 
+           siteDelete.Delete_position=document.getElementById("delete"+trid).id;
+           var strDelete = JSON.stringify(siteDelete);//change to String
+           localStorage.setItem( siteDelete.Delete_position,strDelete);
+           console.log(strDelete);
        }
 
        //create Editbutton
@@ -92,21 +99,28 @@
             savebutton.innerHTML="Save";
             savebutton.className="savebtn";
             td4.appendChild(savebutton);
-            savebutton.setAttribute("save_id",trid);
+            savebutton.setAttribute("id","save"+trid);
    
 
             //savebutton click
             savebutton.onclick=function(){
                 
-                //Id/Name localstorage
-                var site = new Object;
-                site.IdInput=document.getElementById("inputid"+trid).value; 
-                site.NameInput=document.getElementById("inputName"+trid).value; 
-                var str = JSON.stringify(site);//change to String
-                localStorage.setItem("row1input",str);
-                console.log(str);
+                //Id Input localstorage
+                var siteInputId = new Object;
+                siteInputId.IdInput=document.getElementById("inputid"+trid).value; 
+                siteInputId.Id_input_position=document.getElementById("inputid"+trid).id;
+                var strInputId = JSON.stringify(siteInputId);//change to String
+                localStorage.setItem(siteInputId.Id_input_position,strInputId);
+                console.log(strInputId);
+    
+                //Name Input localstorage
+                var siteInputName=new Object;
+                siteInputName.NameInput=document.getElementById("inputName"+trid).value; 
+                siteInputName.Name_input_position=document.getElementById("inputName"+trid).id;
+                var strInputName = JSON.stringify(siteInputName);
+                localStorage.setItem(siteInputName.Name_input_position,strInputName);
+                console.log(strInputName);
 
-               
                 td4.appendChild(editbutton);
                 td4.removeChild(savebutton);
                 td4.removeChild(cancelbutton);
@@ -115,21 +129,32 @@
                 text1.style.display="none";
                 spanText1.style.display="block";
                 var span1_result = document.getElementById("spanid"+trid);
-                span1_result.innerHTML=site.IdInput;
-
+                span1_result.innerHTML=siteInputId.IdInput;
+                
+     
                 text2.style.display="none";
                 spanText2.style.display="block";
                 var span2_result = document.getElementById("spanName"+trid);
-                span2_result.innerHTML= site.NameInput;
+                span2_result.innerHTML= siteInputName.NameInput;
 
 
-                var site1 = new Object;
-                site1.Idspan=document.getElementById("spanid"+trid).innerHTML; 
-                site1.Namespan=document.getElementById("spanName"+trid).innerHTML; 
-                var str1 = JSON.stringify(site1);//change to String
-                localStorage.setItem("row1span",str1);
-                console.log(str1);
-                console.log(site1.Idspan);
+                 //Id span localstorage
+                 var sitespanId = new Object;
+                 sitespanId.Idspan=document.getElementById("spanid"+trid).value; 
+                 sitespanId.Id_span_position=document.getElementById("spanid"+trid).id;
+                 var strspanId = JSON.stringify(sitespanId);//change to String
+                 localStorage.setItem( sitespanId.Id_span_position,strspanId);
+                console.log(strspanId);
+                  
+                 //Name span localstorage
+                 var sitespanName=new Object;
+                 sitespanName.Namespan=document.getElementById("spanName"+trid).value; 
+                 sitespanName.Name_span_position=document.getElementById("spanName"+trid).id;
+                 var strspanName = JSON.stringify(sitespanName);
+                 localStorage.setItem(sitespanName.Name_span_position,strspanName);
+                 console.log(strspanName);
+
+               
                 
              }
 
@@ -208,14 +233,20 @@
        tr.outerHTML="";
    }
 
-/*function loadAll(){
-      var newstr=localStorage.getItem("row1span");
-      var newspanId_result=document.getElementById("spanid"+trid);
-      var newspanName_result=document.getElementById("spanName"+trid);
-      var newsite=JSON.parse(newstr);
-      newspanId_result.innerHTML=newsite.IdInput;
-      newspanName_result.innerHTML=newsite.NameInput;
-}*/
+function loadAll(){
+
+    for(var i=0;i<localStorage.length;i++){  
+        var sitename = localStorage.key(i); 
+        var siteurl = localStorage.getItem(sitename);  
+        var siteparse=JSON.parse(siteurl);
+        console.log(sitename);
+        console.log(siteurl);
+        console.log(siteparse);
+        
+       
+    }
+
+}
     
 
 
