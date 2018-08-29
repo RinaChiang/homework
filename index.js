@@ -1,20 +1,25 @@
 
-/*$('#dataTable').dataTable( {
-  "stateSave": true
-} );*/
 
 
   var counterindex=1;
+ 
+
 
    function addrow(){
-       
+
+      var trid=counterindex;
        //Create tr
        var tr=document.createElement("tr"); /*create <tr> node*/
-       var trid=counterindex;
-       tr.setAttribute("tr_id",trid);//將trid屬性設置給id
-       tr.setAttribute("id","tr_id");
-
        
+       tr.setAttribute("tr_id",trid);
+       tr.setAttribute("id","tr_id");
+       //tr.setAttribute("id","tr"+trid);
+
+       /*var sitetr = new Object; 
+       sitetr.position=document.getElementById("tr_id").id;
+       var strtr = JSON.stringify(sitetr);//change to String
+       localStorage.setItem(sitetr.position,strtr);
+       console.log(strtr);*/
       
 
        // create ID td
@@ -67,17 +72,20 @@
        deletebutton.className="deletebtn";
        td3.appendChild(deletebutton); 
        deletebutton.setAttribute("id","delete"+trid);
+       //deletebutton.setAttribute("id",trid);
 
        //deletebutton click
        deletebutton.onclick=function(){
            removeRow(this);
-
+           
+        
            //Delete localStorage
            var siteDelete = new Object; 
            siteDelete.Delete_position=document.getElementById("delete"+trid).id;
            var strDelete = JSON.stringify(siteDelete);//change to String
            localStorage.setItem( siteDelete.Delete_position,strDelete);
            console.log(strDelete);
+
        }
 
        //create Editbutton
@@ -100,7 +108,7 @@
             savebutton.className="savebtn";
             td4.appendChild(savebutton);
             savebutton.setAttribute("id","save"+trid);
-   
+     
 
             //savebutton click
             savebutton.onclick=function(){
@@ -216,6 +224,7 @@
        }
     
        counterindex+=1;
+       //trid+=1;
        tr.appendChild(td1); /*Append td1 to tr*/
        tr.appendChild(td2);
        tr.appendChild(td3);
@@ -229,6 +238,7 @@
    //delete the row
    function removeRow(event){
 
+       //var tr=document.getElementById("tr"+trid);
        var tr=document.getElementById("tr_id");
        tr.outerHTML="";
    }
