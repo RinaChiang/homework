@@ -12,6 +12,21 @@ function addrow(){
     tridname="tr"+trid;
     tr.setAttribute("id",tridname);
 
+
+     /*var sitespan={
+        
+        number:document.getElementById("inputName"+trid),
+        obj:{
+               idspan:document.getElementById("spanid"+trid).textContent,
+               Namespan:document.getElementById("inputName"+trid).textContent
+        }
+    }
+
+    var strspan = JSON.stringify(sitespan);//change to String
+    localStorage.setItem( "infor",strspan);
+    console.log(strspan);*/
+     
+
     /*var sitetr = new Object; 
     sitetr.position=document.getElementById("tr_id").id;
     var strtr = JSON.stringify(sitetr);//change to String
@@ -111,21 +126,7 @@ function addrow(){
          //savebutton click
          savebutton.onclick=function(){
              
-             //Id Input localstorage
-             var siteInputId = new Object;
-             siteInputId.IdInput=document.getElementById("inputid"+trid).value; 
-             siteInputId.Id_input_position=document.getElementById("inputid"+trid).id;
-             var strInputId = JSON.stringify(siteInputId);//change to String
-             localStorage.setItem(siteInputId.Id_input_position,strInputId);
-             console.log(strInputId);
- 
-             //Name Input localstorage
-             var siteInputName=new Object;
-             siteInputName.NameInput=document.getElementById("inputName"+trid).value; 
-             siteInputName.Name_input_position=document.getElementById("inputName"+trid).id;
-             var strInputName = JSON.stringify(siteInputName);
-             localStorage.setItem(siteInputName.Name_input_position,strInputName);
-             console.log(strInputName);
+           
 
              td4.appendChild(editbutton);
              td4.removeChild(savebutton);
@@ -135,32 +136,32 @@ function addrow(){
              text1.style.display="none";
              spanText1.style.display="block";
              var span1_result = document.getElementById("spanid"+trid);
-             span1_result.innerHTML=siteInputId.IdInput;
-             
+             span1_result.innerHTML=text1.value;
   
              text2.style.display="none";
              spanText2.style.display="block";
              var span2_result = document.getElementById("spanName"+trid);
-             span2_result.innerHTML= siteInputName.NameInput;
-
-
-              //Id span localstorage
-              var sitespanId = new Object;
-              sitespanId.Idspan=document.getElementById("spanid"+trid).value; 
-              sitespanId.Id_span_position=document.getElementById("spanid"+trid).id;
-              var strspanId = JSON.stringify(sitespanId);//change to String
-              localStorage.setItem( sitespanId.Id_span_position,strspanId);
-             console.log(strspanId);
-               
-              //Name span localstorage
-              var sitespanName=new Object;
-              sitespanName.Namespan=document.getElementById("spanName"+trid).value; 
-              sitespanName.Name_span_position=document.getElementById("spanName"+trid).id;
-              var strspanName = JSON.stringify(sitespanName);
-              localStorage.setItem(sitespanName.Name_span_position,strspanName);
-              console.log(strspanName);
-
+             span2_result.innerHTML=text2.value;
+    
             
+
+             var sitespan={
+        
+        
+               // number:document.getElementById(tridname).id,
+             
+                 obj:{
+                       idspan:document.getElementById("spanid"+trid).textContent,
+                       Namespan:document.getElementById("spanName"+trid).textContent
+                }
+            
+                
+            }
+
+        
+            var strspan = JSON.stringify(sitespan);//change to String
+            localStorage.setItem( "infor",strspan);
+            console.log(strspan);
              
           }
 
@@ -219,6 +220,11 @@ function addrow(){
      var oldvalue2=text2.value;
 
     
+     var inputid=document.getElementById("inputid"+trid).value;
+     text1.value=inputid;
+     var inputName= document.getElementById("inputName"+trid).value;
+     text2.value=inputName;
+
     }
  
     counterindex+=1;
