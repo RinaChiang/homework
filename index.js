@@ -70,11 +70,11 @@ function addrow(){
        
      
         //Delete localStorage
-        var siteDelete = new Object; 
+       /* var siteDelete = new Object; 
         siteDelete.Delete_position=document.getElementById("delete"+trid).id;
         var strDelete = JSON.stringify(siteDelete);//change to String
         localStorage.setItem( siteDelete.Delete_position,strDelete);
-        console.log(strDelete);
+        console.log(strDelete);*/
 
     }
 
@@ -129,13 +129,14 @@ function addrow(){
              
               var siteinputstore=new Object;
               siteinputstore.a=sitespan;
+
              if(localStorage.length>0){
                  var siteoutputstore=localStorage.getItem("infor");
                  var stroutputstore=JSON.parse(siteoutputstore);
                  siteinputstore.b=stroutputstore;
                  var strinputstore=JSON.stringify(siteinputstore);
                  localStorage.setItem("infor",strinputstore);
-                 
+
                 
              }else{
                 
