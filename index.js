@@ -1,9 +1,7 @@
 var counterindex=1;
 
 
-
 function addrow(){
-
    var trid=counterindex;
     //Create tr
     var tr=document.createElement("tr"); /*create <tr> node*/
@@ -133,6 +131,7 @@ function addrow(){
              if(localStorage.length>0){
                  var siteoutputstore=localStorage.getItem("infor");
                  var stroutputstore=JSON.parse(siteoutputstore);
+                 console.log(strinputstore);
                  siteinputstore.b=stroutputstore;
                  var strinputstore=JSON.stringify(siteinputstore);
                  localStorage.setItem("infor",strinputstore);
@@ -146,11 +145,7 @@ function addrow(){
                  
                  
             }
-            
-            
           }
-
-          
          // create cancelbutton
          var cancelbutton=document.createElement("button");
          cancelbutton.innerHTML="Cancel";
@@ -218,10 +213,34 @@ function addrow(){
     tr.appendChild(td2);
     tr.appendChild(td3);
     tr.appendChild(td4);
+    
 
     
     var tbody=document.getElementById("tbody");
     tbody.appendChild(tr);/*Append tr to tbody*/
+
+
+    var tmp = document.getElementById("spanid1");
+    var tmp2 = $("#spanid1"); //id; $('.spanName1') //classname = getElementsByClassName
+    var tmp3 = tmp2[0].innerText;
+    var _name = $("#spanName1");
+    var name = _name[0].innerText;
+
+
+    var _body = $("#tbody");
+    var _array = _body[0].children;
+
+    var _final = [];
+    for(i=0; i<_array.length; i++) {
+        var _item = _array[i];
+        var _id = _item.children[0].innerText;
+        var _name = _item.children[1].innerText;
+        _final.push({ id: _id, name: _name });
+    }
+    console.log(_final);
+    var _str_final = JSON.stringify(_final);
+    localStorage.setItem("infor", _str_final);
+
 }
 
 //delete the row
@@ -233,17 +252,38 @@ function removeRow(event){
       tr.outerHTML="";
 }
 
+function appendFromLocal() {
+    var _tmp = localStorage.getItem('infor');   
+    var _local_obj = JSON.parse(_tmp);
+    _local_obj.map( function(item) {
+        var _id = item.id;
+        var _name = item.name;
+        var tr = document.createElement("tr");
+        var td1 = document.createElement("td");
+        var text1 = document.createElement("input");
+        text1.value = _id;
+        text1.style.borderStyle = "outset";
+        text1.style.display = "none";
+        var spanText1 = document.createElement("span");
+        td1.appendChild(spanText1);
+        spanText1.innerHTML = _id;
+        spanText1.display = "block";
+        counterindex += 1;
+        tr.appendChild(td1);
+        var tbody = document.getElementById("tbody");
+        tbody.appendChild(tr);
+    })
+
+}
+
+
 function loadAll(){
 
- for(var i=0;i<localStorage.length;i++){  
-     var sitename = localStorage.key(i); 
-     var siteurl = localStorage.getItem(sitename);  
-     var siteparse=JSON.parse(siteurl);
-     console.log(sitename);
-     console.log(siteurl);
-     console.log(siteparse);
-     
-    
- }
+    for(var i=0;i<localStorage.length;i++){  
+        var sitename = localStorage.key(i); 
+        var siteurl = localStorage.getItem(sitename);  
+        var siteparse=JSON.parse(siteurl);
+    }
+    appendFromLocal(); 
 
 }
