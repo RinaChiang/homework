@@ -1,5 +1,5 @@
 var counterindex=1;
- 
+
 
 
 function addrow(){
@@ -7,31 +7,8 @@ function addrow(){
    var trid=counterindex;
     //Create tr
     var tr=document.createElement("tr"); /*create <tr> node*/
-    
-    
     tridname="tr"+trid;
     tr.setAttribute("id",tridname);
-
-
-     /*var sitespan={
-        
-        number:document.getElementById("inputName"+trid),
-        obj:{
-               idspan:document.getElementById("spanid"+trid).textContent,
-               Namespan:document.getElementById("inputName"+trid).textContent
-        }
-    }
-
-    var strspan = JSON.stringify(sitespan);//change to String
-    localStorage.setItem( "infor",strspan);
-    console.log(strspan);*/
-     
-
-    /*var sitetr = new Object; 
-    sitetr.position=document.getElementById("tr_id").id;
-    var strtr = JSON.stringify(sitetr);//change to String
-    localStorage.setItem(sitetr.position,strtr);
-    console.log(strtr);*/
    
 
     // create ID td
@@ -145,24 +122,31 @@ function addrow(){
     
             
 
-             var sitespan={
-        
-        
-               // number:document.getElementById(tridname).id,
-             
-                 obj:{
-                       idspan:document.getElementById("spanid"+trid).textContent,
-                       Namespan:document.getElementById("spanName"+trid).textContent
-                }
-            
-                
-            }
+             var sitespan=new Object;
+             sitespan.Idspan=document.getElementById("spanid"+trid).textContent;
+             sitespan.Namespan=document.getElementById("spanName"+trid).textContent;
 
-        
-            var strspan = JSON.stringify(sitespan);//change to String
-            localStorage.setItem( "infor",strspan);
-            console.log(strspan);
              
+              var siteinputstore=new Object;
+              siteinputstore.a=sitespan;
+             if(localStorage.length>0){
+                 var siteoutputstore=localStorage.getItem("infor");
+                 var stroutputstore=JSON.parse(siteoutputstore);
+                 siteinputstore.b=stroutputstore;
+                 var strinputstore=JSON.stringify(siteinputstore);
+                 localStorage.setItem("infor",strinputstore);
+                 
+                
+             }else{
+                
+               
+                 var strinputstore=JSON.stringify(siteinputstore);
+                 localStorage.setItem("infor",strinputstore);
+                 
+                 
+            }
+            
+            
           }
 
           
@@ -182,8 +166,8 @@ function addrow(){
               td4.appendChild(editbutton);
               td4.removeChild(savebutton);
               td4.removeChild(cancelbutton);
-              if(oldvalue1=="Id" && oldvalue2=="name"){
-                  spanText1.innerHTML="Id"+trid;
+              if(oldvalue1=="Id"+trid && oldvalue2=="name"+trid){
+                  spanText1.innerHTML="Id"+trid; 
                   spanText2.innerHTML="Name"+trid;
               }else{
                   spanText1.innerHTML=oldvalue1;
@@ -262,4 +246,3 @@ function loadAll(){
  }
 
 }
- 
