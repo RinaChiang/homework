@@ -1,10 +1,8 @@
 .tablecss{
     text-align: center;
-    
 }
 
 .TableButton{
-    
     background-color:#3c3c3c;
 	padding:10px;
 	position:relative;
@@ -25,7 +23,6 @@
 	color-stop(0, #3c3c3c),
 	color-stop(1,	#bebebe)
 	);
-    
     /*box-shadow:x y blur spread color inset*/
     /*前面加入inset 可以變成內陰影 可呈現凹入的可呈現凹入的視覺*/
 	-webkit-box-shadow: inset 0px 1px 0px 2px #4f4f4f, 0px 6px 0px 	#5b5b5b;
@@ -36,8 +33,6 @@
 	-moz-border-radius: 5px;
 	-o-border-radius: 5px;
 	border-radius: 5px;
-   
-    
 }
 
 .title{
@@ -45,28 +40,21 @@
     color: white;
     font-size: 20px;
     font-family: 'Lobster', cursive;
-   
 }
 
 .ID{
     width: 50px;
-   
 }
 .Name{
     width: 150px;
-   
 }
 
 .Delete{
-
     width: 70px;
 }
 
 .Edit{
-   
     width: 200px;
-   
-
 }
 .body{
     margin:100px;
@@ -97,7 +85,6 @@
             background:#eac100;
             border-Radius:5px;
             box-Shadow:3px 3px 3px #bebebe;
-   
 }
 
 .cancelbtn{
