@@ -1,6 +1,6 @@
 .tablecss{
     text-align: center;
-}
+}	
 .TableButton{
     background-color:#3c3c3c;
 	padding:10px;
@@ -9,7 +9,7 @@
 	font-size:12px;
 	text-decoration:none;
     color:#fff;
-    /*預設由上而下漸層*/
+    /*預設由上而下漸層*
 	background: linear-gradient(bottom, #3c3c3c 	#bebebe );
 	background: -o-linear-gradient( 	#3c3c3c 	#bebebe );
 	background: -moz-linear-gradient(#3c3c3c 	#bebebe );
@@ -33,7 +33,6 @@
 	-o-border-radius: 5px;
 	border-radius: 5px;
 }
-
 .title{
     background-color: rgb(190,190,190);
     color: white;
@@ -86,4 +85,32 @@
     border-Radius:70%;
 	margin-Left:10px;
 	box-Shadow:3px 3px 3px #bebebe;
+}
+/*Id*/
+.hide_InputIdState{
+	display:none;
+}
+.display_InputIdState{
+	border-Style:outset;
+	display:block;
+}
+.display_SpanIdState{
+	display: block;
+}
+.hide_SpanIdState{
+	display:none;
+}
+/*Name*/
+.hide_InputNameState{
+	display:none;
+}
+.display_InputNameState{
+	border-Style:outset;
+	display:block;
+}
+.display_SpanNameState{
+	display: block;
+}
+.hide_SpanNameState{
+	display:none;
 }

@@ -4,28 +4,26 @@ function addRow(){
     var  tr_id=counterIndex;
     //Create tr
     var tr=document.createElement("tr"); /*create <tr> node*/
-    trid_Name="tr"+tr_id;
+    var trid_Name="tr"+tr_id;
     tr.setAttribute("id",trid_Name);
 
     // create ID td
     var td1=document.createElement("td"); /*create <td> node*/
-    
     //create IDInput
     var text1=document.createElement("input");
     text1.setAttribute("id","inputid"+tr_id);
-    text1.className="idInput";
+    text1.className="hide_InputIdState";
     text1.type="text";
     text1.value="Id"+tr_id;
-    text1.style.display="none";
     td1.appendChild(text1);
-
+    
     //create IDspan
     var spanText1=document.createElement("span");
     spanText1.setAttribute("id","spanid"+tr_id);
+    spanText1.className="display_SpanIdState";
     td1.appendChild(spanText1);
     spanText1.innerHTML="Id"+counterIndex;
-    spanText1.style.display="block";
-    
+
     // create Name td
     var td2=document.createElement("td");
     td2.setAttribute("id","Nametd"+tr_id);
@@ -33,18 +31,19 @@ function addRow(){
     //create Name Input
     var text2=document.createElement("input");
     text2.setAttribute("id","inputName"+tr_id);
+    text2.className="hide_InputNameState";
     text2.type="text";
     text2.value="name"+tr_id;
     text2.style.borderStyle="outset";
-    text2.style.display="none";
     td2.appendChild(text2);
 
     //create Name span
     var spanText2=document.createElement("span");
     spanText2.setAttribute("id","spanName"+tr_id);
+    spanText2.className="display_SpanNameState";
     td2.appendChild(spanText2);
     spanText2.innerHTML="name"+counterIndex;
-    spanText2.style.display="block";
+
 
     // create Deletebutton
     var td3=document.createElement("td");
@@ -53,12 +52,10 @@ function addRow(){
     deleteButton.className="deletebtn";
     td3.appendChild(deleteButton); 
     deleteButton.setAttribute("data_id",trid_Name);
-
-    //deleteButton click
     deleteButton.onclick=function(){
-       removeRow(this);
-       storageData();
-    }
+        removeRow(this);
+        storageData();
+     }
 
     //create editButton
     var td4=document.createElement("td");
@@ -66,8 +63,6 @@ function addRow(){
     editButton.innerHTML="Edit";
     editButton.className="editbtn";
     td4.appendChild(editButton);
-    //editButton.setAttribute("edit_id",tr_id);
-
     //editButton click
     editButton.onclick=function (){
         td4.removeChild(editButton);
@@ -81,11 +76,17 @@ function addRow(){
             td4.appendChild(editButton);
             td4.removeChild(savebutton);
             td4.removeChild(cancelButton);
-            text1.style.display="none";
-            spanText1.style.display="block";
+            //removeclass
+            $("#spanid"+tr_id).removeClass('hide_SpanIdState');
+            $("#inputid"+tr_id).removeClass('display_InputIdState');
+            $("#spanName"+tr_id).removeClass('hide_SpanNameState');
+            $("#inputName"+tr_id).removeClass('display_InputNameState');
+            //addclass
+            $("#spanid"+tr_id).addClass('display_SpanIdState');
+            $("#inputid"+tr_id).addClass('hide_InputIdState');
+            $("#spanName"+tr_id).addClass('display_SpanNameState');
+            $("#inputName"+tr_id).addClass('hide_InputNameState');
             spanText1.innerHTML=text1.value;
-            text2.style.display="none";
-            spanText2.style.display="block";
             spanText2.innerHTML=text2.value;
             storageData();
           }
@@ -127,20 +128,31 @@ function addRow(){
                 spanText1.innerHTML=text1.value;
                 spanText2.innerHTML=text2.value;
             }
-            spanText1.style.display="block";
-            text1.style.display="none";
-            spanText2.style.display="block";
-            text2.style.display="none";
+            //removeClass
+            $("#spanid"+tr_id).removeClass('hide_SpanIdState');
+            $("#inputid"+tr_id).removeClass('display_InputIdState');
+            $("#spanName"+tr_id).removeClass('hide_SpanNameState');
+            $("#inputName"+tr_id).removeClass('display_InputNameState');
+            //addClass
+            $("#spanid"+tr_id).addClass('display_SpanIdState');
+            $("#inputid"+tr_id).addClass('hide_InputIdState');
+            $("#spanName"+tr_id).addClass('display_SpanNameState');
+            $("#inputName"+tr_id).addClass('hide_InputNameState');
         }
         spanText1.innerHTML="";
         spanText2.innerHTML="";
-        spanText1.style.display="none";
-        spanText2.style.display="none";
-        text1.style.display="block";
-        text2.style.display="block";
+        //removeClass
+        $("#spanid"+tr_id).removeClass('display_SpanIdState');
+        $("#inputid"+tr_id).removeClass('hide_InputIdState');
+        $("#spanName"+tr_id).removeClass('display_SpanNameState');
+        $("#inputName"+tr_id).removeClass('hide_InputNameState');
+        //addClass
+        $("#spanid"+tr_id).addClass('hide_SpanIdState');
+        $("#inputid"+tr_id).addClass('display_InputIdState');
+        $("#spanName"+tr_id).addClass('hide_SpanNameState');
+        $("#inputName"+tr_id).addClass('display_InputNameState');
         var oldvalue1=text1.value;
         var oldvalue2=text2.value;
-    
         var input_Id=document.getElementById("inputid"+tr_id).value;
         text1.value=input_Id;
         var input_Name=document.getElementById("inputName"+tr_id).value;
@@ -175,47 +187,62 @@ function storageData(){
     localStorage.setItem("infor", _str_final); //將目前values存到infor
 }
 //delete the row
-function removeRow(event){
+/*function removeRow(event){
     var id=event.getAttribute("data_id");
     var tr=document.getElementById(id);
     if(tr !=null)
       tr.outerHTML="";
-}
+}*/
 function appendFromLocal() {
     var _tmp = localStorage.getItem('infor');   
     var _local_obj = JSON.parse(_tmp);
     _local_obj.map( function(item) { //按照順序排列
         var  tr_id=counterIndex;
+        var trid_Name="tr"+tr_id;
         var _id = item.id;
         var _name = item.name;
         var tr = document.createElement("tr");
+        tr.setAttribute("id",trid_Name);
         //id
         var td1 = document.createElement("td");
-        var text1 = document.createElement("input");
+        var text1=document.createElement("input");
+        text1.setAttribute("id","inputid"+tr_id);
+        text1.className="hide_InputIdState";
+        text1.className="hide_InputIdState";
+        td1.appendChild(text1);
         text1.value = _id;
-        text1.style.borderStyle = "outset";
-        text1.style.display = "none";
         var spanText1 = document.createElement("span");
+        spanText1.setAttribute("id","spanid"+tr_id);
+        spanText1.className="display_SpanIdState";
         td1.appendChild(spanText1);
         spanText1.innerHTML = _id;
-        spanText1.display = "block";
+  
         //name
         var td2 = document.createElement("td");
+        //name input
         var text2 = document.createElement("input");
+        text2.setAttribute("id","inputName"+tr_id);
+        text2.className="hide_InputNameState";
+        td2.appendChild(text2);
         text2.value = _name;
-        text2.style.borderStyle = "outset";
-        text2.style.display = "none";
+        //name span
         var spanText2 = document.createElement("span");
+        spanText2.setAttribute("id","spanName"+tr_id);
+        spanText2.className="display_SpanNameState";
         td2.appendChild(spanText2);
         spanText2.innerHTML = _name;
-        spanText2.display = "block";
         //Delete
         var td3=document.createElement("td");
-        var deleteButton=document.createElement("button");
+        var deleteButton=document.createElement("button"); /*create <button> node */
         deleteButton.innerHTML="Delete";
         deleteButton.className="deletebtn";
-        td3.appendChild(deleteButton);
-        //edit
+        td3.appendChild(deleteButton); 
+        deleteButton.setAttribute("data_id",trid_Name);
+        deleteButton.onclick=function(){
+            removeRow(this);
+            storageData();
+         }
+        //create editButton
         var td4=document.createElement("td");
         var editButton=document.createElement("button");
         editButton.innerHTML="Edit";
@@ -233,13 +260,19 @@ function appendFromLocal() {
                 td4.appendChild(editButton);
                 td4.removeChild(savebutton);
                 td4.removeChild(cancelButton);
-                text1.style.display="none";
-                spanText1.style.display="block";
+                //removeclass
+                $("#spanid"+tr_id).removeClass('hide_SpanIdState');
+                $("#inputid"+tr_id).removeClass('display_InputIdState');
+                $("#spanName"+tr_id).removeClass('hide_SpanNameState');
+                $("#inputName"+tr_id).removeClass('display_InputNameState');
+                //addclass
+                $("#spanid"+tr_id).addClass('display_SpanIdState');
+                $("#inputid"+tr_id).addClass('hide_InputIdState');
+                $("#spanName"+tr_id).addClass('display_SpanNameState');
+                $("#inputName"+tr_id).addClass('hide_InputNameState');
                 spanText1.innerHTML=text1.value;
-      
-                text2.style.display="none";
-                spanText2.style.display="block";
                 spanText2.innerHTML=text2.value;
+                storageData();
               }
             //create cancelButton
             var cancelButton=document.createElement("button");
@@ -279,18 +312,28 @@ function appendFromLocal() {
                     spanText1.innerHTML=text1.value;
                     spanText2.innerHTML=text2.value;
                 }
-                spanText1.style.display="block";
-                text1.style.display="none";
-                spanText2.style.display="block";
-                text2.style.display="none";
+                $("#spanid"+tr_id).removeClass('hide_SpanIdState');
+                $("#inputid"+tr_id).removeClass('display_InputIdState');
+                $("#spanName"+tr_id).removeClass('hide_SpanNameState');
+                $("#inputName"+tr_id).removeClass('display_InputNameState');
+                //addclass
+                $("#spanid"+tr_id).addClass('display_SpanIdState');
+                $("#inputid"+tr_id).addClass('hide_InputIdState');
+                $("#spanName"+tr_id).addClass('display_SpanNameState');
+                $("#inputName"+tr_id).addClass('hide_InputNameState');
             }
-            text1.style.display="block";
-            text2.style.display="block";
-            spanText1.style.display="none";
-            spanText2.style.display="none";
+             //removeClass
+            $("#spanid"+tr_id).removeClass('display_SpanIdState');
+            $("#inputid"+tr_id).removeClass('hide_InputIdState');
+            $("#spanName"+tr_id).removeClass('display_SpanNameState');
+            $("#inputName"+tr_id).removeClass('hide_InputNameState');
+            //addClass
+            $("#spanid"+tr_id).addClass('hide_SpanIdState');
+            $("#inputid"+tr_id).addClass('display_InputIdState');
+            $("#spanName"+tr_id).addClass('hide_SpanNameState');
+            $("#inputName"+tr_id).addClass('display_InputNameState');
             var oldvalue1=text1.value;
             var oldvalue2=text2.value;
-
             var input_Id=document.getElementById("inputid"+tr_id).value;
             text1.value=input_Id;
             var input_Name=document.getElementById("inputName"+tr_id).value;
@@ -304,6 +347,16 @@ function appendFromLocal() {
         var tbody = document.getElementById("tbody");
         tbody.appendChild(tr);
     })
+}
+//delete the row
+function removeRow(event){
+    var id=event.getAttribute("data_id");
+    var tr=document.getElementById(id);
+    if(tr!=null)
+    tr.outerHTML="";
+}
+function addClass(element,csName){
+    element.className+=' '+csName;
 }
 function loadAll(){
     appendFromLocal(); 
